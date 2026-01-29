@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Calcul Moyenne Semestre</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            padding: 20px;
+        }
+        h2 {
+            background: #003366;
+            color: white;
+            padding: 8px;
+        }
+        .module {
+            background: white;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        input {
+            width: 70px;
+            margin: 3px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Calcul de la Moyenne du Semestre</h1>
+
+<div class="module">
+    <h2>Actionneurs Industriels</h2>
+    Examen <input id="EXAMactionneur" type="number" min="0" max="20">
+    TP <input id="TPactionneur" type="number" min="0" max="20">
+</div>
+
+<div class="module">
+    <h2>Logique combinatoire et séquentielle</h2>
+    Examen <input id="EXAMlogique" type="number">
+    TD <input id="TDlogique" type="number">
+    TP <input id="TPlogique" type="number">
+</div>
+
+<div class="module">
+    <h2>Electronique de puissance</h2>
+    Examen <input id="EXAMep" type="number">
+    TD <input id="TDep" type="number">
+    TP <input id="TPep" type="number">
+</div>
+
+<div class="module">
+    <h2>Electronique Appliquée</h2>
+    Examen <input id="EXAMea" type="number">
+    TP <input id="TPea" type="number">
+</div>
+
+<div class="module">
+    <h2>Anglais Technique</h2>
+    Examen <input id="EXAManglais" type="number">
+</div>
+
+<div class="module">
+    <h2>Programmation C++</h2>
+    TP <input id="TPprogramation" type="number">
+</div>
+
+<div class="module">
+    <h2>Capteurs et Instrumentation</h2>
+    Examen <input id="EXAMcapteur" type="number">
+    TP <input id="TPcapteur" type="number">
+</div>
+
+<div class="module">
+    <h2>Méthodes Numériques</h2>
+    Examen <input id="EXAMmn" type="number">
+    TP <input id="TPmn" type="number">
+</div>
+
+<div class="module">
+    <h2>Asservissement</h2>
+    Examen <input id="EXAMasservissement" type="number">
+    TD <input id="TDasservissement" type="number">
+    TP <input id="TPasservissement" type="number">
+</div>
+
+<button onclick="calculer()">Calculer la Moyenne</button>
+
+<div class="result" id="resultat"></div>
+
+<script>
+function calculer() {
+
+    let coef = 19;
+
+    let MOYactionneur = ((+EXAMactionneur.value * 0.6) + (+TPactionneur.value * 0.4)) * 2;
+    let MOYlogique = ((+EXAMlogique.value * 0.6) + (+TDlogique.value * 0.2) + (+TPlogique.value * 0.2)) * 4;
+    let MOYep = ((+EXAMep.value * 0.6) + (+TDep.value * 0.2) + (+TPep.value * 0.2)) * 2;
+    let MOYea = ((+EXAMea.value * 0.6) + (+TPea.value * 0.4)) * 2;
+    let MOYanglais = +EXAManglais.value;
+    let MOYprogramation = +TPprogramation.value;
+    let MOYcapteur = (+EXAMcapteur.value * 0.6) + (+TPcapteur.value * 0.4);
+    let MOYmn = ((+EXAMmn.value * 0.6) + (+TPmn.value * 0.4)) * 2;
+    let MOYasservissement = ((+EXAMasservissement.value * 0.6) + (+TDasservissement.value * 0.2) + (+TPasservissement.value * 0.2)) * 4;
+
+    let moyenne = (MOYactionneur + MOYlogique + MOYep + MOYea +
+                   MOYanglais + MOYprogramation + MOYcapteur +
+                   MOYmn + MOYasservissement) / coef;
+
+    let msg = moyenne >= 10 ? "✅ Succès – Semestre validé" : "❌ Échec";
+
+    document.getElementById("resultat").innerHTML =
+        "Moyenne du semestre : " + moyenne.toFixed(2) + "<br>" + msg;
+}
+</script>
+
+</body>
+</html>
